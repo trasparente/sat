@@ -1,0 +1,28 @@
+timezone: Europe/Rome
+permalink: pretty
+
+# OPTIONS defaults
+# class: site class
+# language: en
+# direction: ltr
+# soma: true
+
+# DEFAULTS
+defaults:
+  - scope:
+      path: ''
+#       type: posts
+    values:
+      layout: default
+#       pagination: true
+#       aside: true
+#       class: remember-document headings-anchor
+
+# COLLECTIONS
+#   docs:
+#     title: Docs
+#     output: true
+#     sort_by: order
+collections:
+  posts:
+    title: Posts

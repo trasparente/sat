@@ -1,0 +1,25 @@
+button
+  // Reset button appearance
+  @extend .no-appearance, .mpz
+  background: transparent
+  cursor: pointer
+  border: none
+
+  // Submit buttons
+  &[type='submit']
+    @extend .fg-action, .bg-subtle, .font-family, .font-size, .border-dim, .border-radius, .padding-small
+    margin: .5em 0
+    max-width: 15em
+    outline: none
+    &:hover, &:focus
+      @extend .border
+    &:active
+      @extend .fg
+
+// States
+button[type='submit'][disabled],
+form:invalid button[type='submit']
+  @extend .bg-dim
+  color: var(--bg)
+  pointer-events: none
+  user-select: none

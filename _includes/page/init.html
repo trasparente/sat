@@ -1,0 +1,48 @@
+{%- assign site_title = site.title | default: site.github.project_title -%}
+{%- assign sitetime = site.time | date: '%s' -%}
+{%- assign hash = site.github.build_revision | slice: 0, 7 -%}
+{%- assign description = page.description | default: site.description | default: site.github.project_tagline -%}
+{%- assign collection = page.collection -%}
+{%- assign repo = site.github.public_repositories | where: "full_name", site.github.repository_nwo | first -%}
+{%- assign id = repo.id -%}
+{%- assign fork = repo.fork -%}
+{%- assign pushed_at = repo.pushed_at | date_to_xmlschema -%}
+{%- assign created_at = repo.created_at | date_to_xmlschema -%}
+{%- assign language = page.language | default: site.language | default: "en" -%}
+{%- assign direction = page.direction | default: site.direction | default: "ltr" -%}
+{%- assign pagination = page.pagination -%}
+{%- assign date_format = '%A %-d %B %Y %z' %}
+{%- assign date_numeric = '%e-%-m-%y %T %z %w' %}
+{%- assign color_scheme = page.color_scheme | default: site.color_scheme | default: "dark" -%}
+{% assign shades = 'bg fg,fg-dim,bg-dim,active' | split: ',' %}
+{% assign colors = 'success,info,error,action' | split: ',' %}
+{% assign html_pages = site.html_pages %}
+{% if html_pages %}{% assign sorted_html_pages = html_pages | order_by: order_by %}{% endif %}
+{% assign order_by = 'order' %}
+{% assign site_collections = site.collections %}
+{% if site_collections %}{% assign sorted_collections = site_collections | order_by: order_by %}{% endif %}
+{%- capture api -%}
+<fieldset markdown=1><legend>Liquid initial values</legend>
+- `site_title` {{ site_title }}
+- `sitetime` {{ sitetime }}
+- `hash` {{ hash }}
+- `description` {{ description }}
+- `collection` {{ collection }}
+- `id` {{ id }}
+- `fork` {{ fork }}
+- `pushed_at` {{ pushed_at }}
+- `created_at` {{ created_at }}
+- `language` {{ language }}
+- `direction` {{ direction }}
+- `pagination` {{ pagination }}
+- `color_scheme` {{ color_scheme }}
+- `date_format` {{ site.time | date: date_format }}
+- `date_numeric` {{ site.time | date: date_numeric }}
+- `repo.node_id` {{ repo.node_id }}
+- `repo.owner.node_id` {{ repo.owner.node_id }}
+- `shades` {{ shades | inspect }}
+- `colors` {{ colors | inspect }}
+- `html_pages` {{ html_pages.size }}
+- `site_collections` {{ sorted_collections.size }}
+</fieldset>
+{%- endcapture -%}

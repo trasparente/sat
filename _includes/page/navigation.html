@@ -1,0 +1,27 @@
+<div>
+  <nav id='nav-main'>
+
+  <!-- PAGES not in 'assets/' -->
+  {%- assign html_pages = site.html_pages -%}
+  <fieldset><legend>Pages</legend>
+  {% for link in html_pages %}{% unless link.path contains 'assets/' %}<a class='page-link' href="{{ link.url | absolute_url }}"{% if page.url == link.url %} aria-current="page"{% endif %}{% if link.order %} style='order: {{ link.order }}'{% endif %} title='{{ link.description }}'>{{ link.title | default: link.name }}</a>{% endunless %}{% endfor %}
+  </fieldset>
+
+  <!-- COLLECTIONS -->
+  {% assign sorted_collections = site.collections %}
+  {% for collection in sorted_collections %}{% if collection.docs.size > 0 %}
+  <fieldset><legend>{{ collection.title | default: collection.label }}</legend>
+  {% for d in collection.docs %}<a class='document-link' href="{{ d.url | absolute_url }}"{% if page.url == d.url %} aria-current="page"{% endif %}{% if d.order %} style="order: {{ d.order }}"{% endif %} title='{{ d.description }}'>{{ d.title }}</a>
+  {% endfor %}
+  </fieldset>
+  {% endif %}{% endfor %}
+
+  <fieldset id='nav-admin'><legend>Admin</legend>
+  <div>
+  {% include widgets/links/settings.html %}
+  {% include widgets/links/login.html %}
+  </div>
+  </fieldset>
+
+  </nav>
+</div>

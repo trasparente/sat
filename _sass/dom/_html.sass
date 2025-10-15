@@ -1,0 +1,31 @@
+html
+  overflow-y: scroll
+  scroll-behavior: smooth
+
+  // HIDE SAME-NAME STATES
+  // NEGATION
+  &:not(.unlogged) .unlogged, &:not(.logged) .logged,
+  &.online .offline, &:not(.online) .online,
+  &:not(.behind) .behind, &:not(.updated) .updated,
+  &.focus .blur, &:not(.focus) .focus,
+  &:not(.scrolled) .scrolled, &.shorter .scrolled,
+  &.scrolled .unscrolled, &.shorter .unscrolled,
+  &:not(.logged) .guest,
+  &:not(.logged) .admin,
+  &:not(.admin) .admin,
+  &:not(.ajax) .ajax,
+  &:not(.guest) .guest,
+  &:not(.fullscreen) .fullscreen,
+  &:not(.not-fullscreen) .not-fullscreen,
+  &:not(.big-screen) .big-screen,
+  &:not(.mobile) .mobile,
+  &:not(.not-big-screen) .not-big-screen,
+  &:not(.not-mobile) .not-mobile,
+  body:not([data-debug='true']) .debug,
+  body:not([data-github-fork='true']) .fork,
+  body:not([data-github-fork='false']) .unfork,
+  body:not([data-github-environment='development']) .development,
+  body:not([data-github-environment='production']) .production,
+  body[data-github-remote-theme=''] .remote-theme,
+  .only-child:not(:only-child)
+    @extend .hidden

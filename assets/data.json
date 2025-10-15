@@ -1,0 +1,4 @@
+---
+layout: none
+---
+{% if site.data %}{{ site.data | jsonify }}{% else %}{}{% endif %}

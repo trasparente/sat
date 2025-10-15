@@ -1,0 +1,12 @@
+textarea, input
+  @extend .no-appearance, .bg-subtle, .fg, .font-size, .border-dim, .border-radius, .padding-small
+  cursor: default
+  margin: .5em 0
+  max-width: 15em
+  outline: none
+
+input
+  &:focus
+    @extend .border
+  &:not(:valid)
+    @extend .border-error

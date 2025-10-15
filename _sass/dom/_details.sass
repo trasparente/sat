@@ -1,0 +1,14 @@
+details
+  summary
+    @extend .link, .padding-small
+    width: fit-content
+    &::marker
+      color: var(--fg)
+    &:hover
+      color: var(--fg)
+      text-decoration: none
+    &:active,
+    &:active &::marker
+      color: var(--dim)
+html.mobile details[open]
+  border-bottom: 1px solid var(--subtle)

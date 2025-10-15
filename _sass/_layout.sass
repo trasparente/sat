@@ -1,0 +1,41 @@
+.wrapper
+  margin: auto
+.hidden
+  display: none
+.inline
+  display: inline
+.inline-block
+  display: inline-block
+.flex
+  display: flex
+.column
+  flex-direction: column
+.no-appearance
+  appearance: none
+  -webkit-appearance: none
+
+#bottom
+  position: fixed
+  right: 0
+  bottom: 0
+  padding: 1em
+
+.mpz
+  margin: 0
+  padding: 0
+.margin-vertical
+  margin: .5em 0
+.padding-layout
+  padding: var(--padding-layout)
+.padding-layout-small
+  padding: var(--padding-layout-small)
+.padding-small
+  padding: var(--padding-small)
+
+.box
+  @extend .inline-block, .border-radius, .padding-small
+  border-width: var(--border-width)
+  border-style: var(--border-style)
+  margin: .2em 0
+  &:not(.border)
+    border-color: transparent

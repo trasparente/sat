@@ -1,0 +1,41 @@
+// Backgrounds
+.bg
+  background-color: var(--bg)
+@each $name, $value in $shades
+  .bg-#{$name}
+    background-color: var(--#{$name})
+.active
+  background-color: var(--fg)
+  border-color: var(--fg)
+  color: var(--bg)
+@each $name, $value in $colors
+  .bg-#{$name}
+    background-color: var(--#{$name})
+    @if $name == info or $name == action
+      color: var(--bg)
+
+// Foregrounds
+.fg
+  color: var(--fg)
+@each $name, $value in $shades
+  .fg-#{$name}
+    color: var(--#{$name})
+@each $name, $value in $colors
+  .fg-#{$name}
+    color: var(--#{$name})
+
+// Borders
+.border
+  border-color: var(--fg)
+  border-width: var(--border-width)
+  border-style: var(--border-style)
+.border-radius
+  border-radius: var(--border-radius)
+@each $name, $value in $shades
+  .border-#{$name}
+    border-color: var(--#{$name})
+    @extend .border
+@each $name, $value in $colors
+  .border-#{$name}
+    border-color: var(--#{$name})
+    @extend .border

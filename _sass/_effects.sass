@@ -1,0 +1,15 @@
+// BLINK
+.blink
+  animation: blink $blink step-start infinite
+@keyframes blink
+  50%
+    opacity: 0
+// DIM BLINK
+.dim-blink
+  animation: half_blink $blink step-start infinite
+@keyframes half_blink
+  50%
+    opacity: 0.5
+// PULSE
+.pulse
+  animation: $blink ease-in-out infinite half_blink

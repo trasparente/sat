@@ -1,0 +1,36 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="{{ color_scheme }}" />
+  <meta name="generator" content="Jekyll v{{ site.github.versions.jekyll }}" />
+  <title>{{ page.title }} {{ title }}</title>
+  <!-- META -->
+  <meta name="color-scheme" content="{{ color_scheme }}" />
+  <meta name="description" content="{{ description }}">
+  <meta property="og:title" content="{{ page.title }} {{ title }}">
+  <meta property="og:image" content="{{ page.image }}">
+  <meta property="og:description" content="{{ description }}">
+  {% if site.remote_theme %}
+  <!-- REMOTE THEME -->
+  <meta name='remote_theme' content='{{ site.remote_theme }}'>
+  <meta name='remote_theme_nwo' content='{{ site.remote_theme | split: "@" | first }}'>
+  <meta name='remote_theme_branch' content='{{ site.remote_theme | split: "@" | last }}'>{% endif %}
+
+  {% include page/favicon.html %}
+
+  <!-- LINKS -->
+  <link rel='canonical' href='{{ page.url | absolute_url }}' />
+
+  <!-- CSS -->
+  <link rel='stylesheet' href='{{ "assets/css/stylesheet.css" | absolute_url }}?sitetime={{ sitetime }}'>
+
+  <!-- JS -->
+
+  <!-- jQuery 3.6.3 https://api.jquery.com/ -->
+  <script src='{{ "assets/js/jquery-3.6.3.min.js" | absolute_url }}'></script>
+
+  <!-- Custom script Deferred -->
+  <script src='{{ "assets/js/script.js" | absolute_url }}?sitetime={{ sitetime }}' defer></script>
+
+</head>

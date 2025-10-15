@@ -1,0 +1,17 @@
+[popover]
+  @extend .bg, .border-dim, .border-radius, .padding-layout-small
+  cursor: default
+  &::backdrop
+    background: rgba(0,0,0,.5)
+    backdrop-filter: saturate(40%)
+
+// [popover]:popover-open
+
+.popover
+  @extend .bg, .border-dim, .border-radius, .padding-layout-small
+  cursor: pointer
+  &:hover
+    @extend .border
+  &::backdrop
+    background: transparent
+    backdrop-filter: none
