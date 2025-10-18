@@ -1,30 +1,14 @@
 .icon
-  // Pagination icons
-  &[rel] svg
-    width: 1em
-    height: 1em
-    transform: translateY(3px)
   // Aside icons
   svg
     fill: var(--dim)
     width: auto
     height: 1em
-    vertical-align: bottom
-
-// Icon buttons
-fieldset#nav-admin
-  margin-left: auto
-  a
-    line-height: 1
-    padding: 0
-    svg
-      fill: var(--link)
-    &[aria-current='page'] svg
-      fill: var(--info)
-    &:hover svg, a:focus svg
-      fill: var(--fg)
-    &:active svg
-      fill: var(--dim)
+    vertical-align: middle
+  // Pagination icons
+  &[rel] svg
+    width: 1em
+    transform: translateY(3px)
 
 // Settings icon
 .icon-small
@@ -34,3 +18,21 @@ fieldset#nav-admin
     margin: 0
   &[aria-current='page'] svg
     fill: var(--fg)
+
+// Icon buttons
+#nav-admin a,
+#status div
+  @extend .icon
+  padding: 0
+  width: 1.4em
+  line-height: 1
+  text-align: center
+#nav-admin a
+  svg
+    fill: var(--link)
+  &[aria-current='page'] svg
+    fill: var(--info)
+  &:hover svg, a:focus svg
+    fill: var(--fg)
+  &:active svg
+    fill: var(--dim)

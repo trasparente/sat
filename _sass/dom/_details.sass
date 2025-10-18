@@ -1,4 +1,8 @@
 details
+  @extend .border-subtle, .border-bottom
+  border-style: dashed
+  margin-bottom: 1em
+  padding: .5em 0
   summary
     @extend .link, .padding-small
     width: fit-content
@@ -8,7 +12,7 @@ details
       color: var(--fg)
       text-decoration: none
     &:active,
-    &:active &::marker
+    &:active::marker
       color: var(--dim)
 html.mobile details[open]
   border-bottom: 1px solid var(--subtle)

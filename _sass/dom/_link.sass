@@ -8,6 +8,14 @@ a, .link
   &:active
     color: var(--dim)
 
+// Header
+header + nav fieldset a
+  padding: 0 .2em
+  @extend .uppercase
+  font-family: system-ui
+  &[aria-current='page']
+    @extend .fg-info
+
 // Footer
 footer nav a
   color: var(--dim)

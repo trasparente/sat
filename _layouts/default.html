@@ -3,10 +3,10 @@
 <html class='unlogged' lang='{{ language }}' dir='{{ direction }}'>
 {%- include page/head.html -%}
 <!--
-onresize='resize()'
   -->
 <body
   onload='bootstrap()'
+  onresize='resize()'
   ononline='online()'
   onoffline='offline()'
   onhashchange='onhashchange()'
@@ -32,7 +32,7 @@ onresize='resize()'
   class='{{ page.class | append: " " | append: page.default_class | strip }}'>
 {%- include page/header.html -%}
 {%- include page/navigation.html -%}
-<main>{%- if page.aside -%}{%- include widgets/aside.html -%}{%- endif -%}{{ content }}{%- if page.pagination -%}{% include widgets/pagination.html %}{%- endif -%}</main>
+{%- include page/main.html -%}
 {%- include page/footer.html -%}
 {%- include page/bottom.html -%}
 </body>

@@ -1,0 +1,1 @@
+<time datetime='{{ include.datetime | default: site.time | date_to_rfc822 }}'{% if include.duration %} duration="{{ include.duration }}"{% endif %}{% if include.style %} data-style="{{ include.style }}"{% endif %}><span></span></time>

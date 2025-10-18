@@ -1,0 +1,5 @@
+<main>
+  <div>
+    {%- if page.aside -%}{%- include widgets/aside.html -%}{%- endif -%}{{ content }}{%- if page.pagination -%}{% include widgets/pagination.html %}{%- endif -%}
+  </div>
+</main>

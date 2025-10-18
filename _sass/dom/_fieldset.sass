@@ -1,24 +1,15 @@
 fieldset
   @extend .bg-subtle, .border-radius, .inline-block, .margin-vertical
-  padding: .3em .5em .7em .5em
+  padding: 0em .3em .3em .3em
   height: fit-content
   border-color: transparent
   legend
     background-color: var(--bg)
     color: var(--dim)
-    margin-bottom: .2em
+    // margin-bottom: .2em
     padding: .1em .3em
     text-transform: uppercase
-  &#nav-admin > div
-    display: flex
-    justify-content: flex-end
-    padding-right: .5em
-    gap: .7em
-#nav-main
+header + nav
   fieldset
-    @extend .inline
+    @extend .inline, .bg
     margin: 0
-    a
-      @extend .padding-small
-      &[aria-current='page']
-        @extend .fg-info

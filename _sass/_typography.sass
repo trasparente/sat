@@ -4,5 +4,20 @@
   font-family: var(--font-family)
 .font-size
   font-size: var(--font-size)
+.font-size-small
+  font-size: var(--font-size-small)
+.font-size-smaller
+  font-size: var(--font-size-smaller)
+.uppercase
+  text-transform: uppercase
 p, dl
   margin: .5em 0
+time
+  span:last-child
+    text-decoration: underline dotted var(--dim)
+  &.today span:last-child
+    text-decoration-color: var(--success)
+  &.tomorrow span:last-child
+    text-decoration-color: var(--info)
+  &.yesterday span:last-child
+    text-decoration-color: var(--action)

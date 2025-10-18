@@ -1,0 +1,18 @@
+{:.no_toc}
+{% if include.details %}<details><summary>Table of contents</summary>
+<div markdown='1'>
+- toc
+{:toc}
+</div>
+</details>{% else %}
+- toc
+{:toc}
+{% endif %}
+{%- capture api -%}
+Add a table-of-content excluding the preceding heading.
+```liquid
+{% raw %}{% include widgets/toc.html %}{% endraw %}
+```
+**Options**
+- `include.details = true` enclose toc in a details
+{%- endcapture -%}

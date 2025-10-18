@@ -1,6 +1,11 @@
 <header>
   <div>
-    <time datetime='{{ site.time | date_to_rfc822 }}'><code>{{ site.time | date: date_numeric }}/6
-    </code></time>
+    <div id='status'>
+    {% include page/status.html %}
+    </div>
+    <div id='nav-admin'>
+    {% include widgets/links/settings.html %}
+    {% include widgets/links/login.html %}
+    </div>
   </div>
 </header>

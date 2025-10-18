@@ -1,1 +1,1 @@
-<a href='{{ "/settings/" | absolute_url }}' class='admin icon' title="Settings"{% if page.url == url %} aria-current="page"{% endif %}>{% include svg/icons/gear.svg %}</a>
+{% assign url = "/site/settings/" %}<a href='{{ url }}' class='admin' title="Settings"{% if page.url == url %} aria-current="page"{% endif %}>{% include svg/icons/gear.svg %}</a><a href="#" class='unlogged'></a><a href="#" class='guest'></a>

@@ -1,0 +1,18 @@
+table
+  margin-block: 1em
+  tr
+    td, th
+      @extend .bg, .fg
+      padding: .2em .5em
+      vertical-align: baseline
+      border-bottom: 1px solid var(--dim)
+    &[aria-selected='true'] td
+      @extend .active
+    &.only-child td
+      border: none
+  tr th
+    background: var(--subtle)
+    &:first-child
+      border-top-left-radius: var(--border-radius)
+    &:last-child
+      border-top-right-radius: var(--border-radius)

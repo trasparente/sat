@@ -5,6 +5,7 @@
     get_auth(t).done (user) ->
       # use Bootstrap token for first login
       get_repo(user, token).done (repo) ->
+        $('#auth-message').text message
         # If admin check builds
         if repo.permissions.admin then get_builds().done (builds) ->
           if repo.fork and builds[0].status is 'built'
@@ -26,7 +27,6 @@ get_repo = (user, token) -> $.get
     storage.set 'role', role
     # Alert for login
     message = "#{ user.login } logged as #{ role }"
-    # $('[href="#logout"]').attr 'data-info', message
     if token
       bottom.append "<div class='popover'>#{ message }</div>"
     return # End get_repo done

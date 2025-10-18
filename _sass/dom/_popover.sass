@@ -5,8 +5,7 @@
     background: rgba(0,0,0,.5)
     backdrop-filter: saturate(40%)
 
-// [popover]:popover-open
-
+// Toast popover
 .popover
   @extend .bg, .border-dim, .border-radius, .padding-layout-small
   cursor: pointer
@@ -15,3 +14,9 @@
   &::backdrop
     background: transparent
     backdrop-filter: none
+
+#bottom .popover
+  margin-top: .5em
+  margin-left: auto
+  width: fit-content
+// [popover]:popover-open

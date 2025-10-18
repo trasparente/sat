@@ -1,5 +1,8 @@
-#nav-main
-  @extend .bg, .flex
-  gap: .5em
+header + nav
+  @extend .padding-layout-small, .bg-subtle
   cursor: default
-  padding: 0 1em
+  z-index: 100
+  position: sticky
+  top: 0
+  & > div
+    @extend .wrapper

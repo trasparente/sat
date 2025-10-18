@@ -12,10 +12,8 @@
 {%- assign direction = page.direction | default: site.direction | default: "ltr" -%}
 {%- assign pagination = page.pagination -%}
 {%- assign date_format = '%A %-d %B %Y %z' %}
-{%- assign date_numeric = '%e-%-m-%y %T %z %w' %}
+{%- assign date_numeric = '%y-%m-%d %T %z %w/6' %}
 {%- assign color_scheme = page.color_scheme | default: site.color_scheme | default: "dark" -%}
-{% assign shades = 'bg fg,fg-dim,bg-dim,active' | split: ',' %}
-{% assign colors = 'success,info,error,action' | split: ',' %}
 {% assign html_pages = site.html_pages %}
 {% if html_pages %}{% assign sorted_html_pages = html_pages | order_by: order_by %}{% endif %}
 {% assign order_by = 'order' %}
@@ -40,8 +38,6 @@
 - `date_numeric` {{ site.time | date: date_numeric }}
 - `repo.node_id` {{ repo.node_id }}
 - `repo.owner.node_id` {{ repo.owner.node_id }}
-- `shades` {{ shades | inspect }}
-- `colors` {{ colors | inspect }}
 - `html_pages` {{ html_pages.size }}
 - `site_collections` {{ sorted_collections.size }}
 </fieldset>

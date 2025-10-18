@@ -10,6 +10,7 @@ login_form = $ '#login-form'
 login_popover = $ '#login-popover'
 today = +new Date().setHours 0,0,0,0
 environment = '{{ site.github.environment }}'
+message = 'unlogged'
 github_repo_url = '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}'
 
 # Slug strings

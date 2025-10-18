@@ -1,10 +1,27 @@
 tt, code, kbd, samp
-  font-size: 98%
-  vertical-align: bottom
   @extend .bg-subtle
+  // font-size: 98%
+  vertical-align: bottom
   color: antiquewhite
 
 // INLINE
 code.highlighter-rouge
+  @extend .border-radius, .font-size-small
+  padding: .1em .2em
+
+// BLOCKS
+// Fenced, kramdown, indented:
+// div.highlighter-rouge > div.highlight > pre.highlight > code
+// liquid:
+// figure.highlight > pre > code
+div.highlighter-rouge
+  display: table
+  margin-block: 1em
+[class*='highlight']
   @extend .border-radius
-  padding: .1em .3em
+  pre
+    @extend .border-radius, .font-size-smaller
+    white-space: pre-wrap
+    padding: .4em .6em
+    // Reset browser margin
+    margin: 0

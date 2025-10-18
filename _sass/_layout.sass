@@ -13,8 +13,17 @@
 .no-appearance
   appearance: none
   -webkit-appearance: none
+.wrapper
+  max-width: 600px
+  margin: 0 auto
+
+#nav-admin,
+#status
+  @extend .flex
+  justify-content: flex-end
 
 #bottom
+  z-index: 100
   position: fixed
   right: 0
   bottom: 0
