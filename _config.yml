@@ -6,24 +6,25 @@ repository: trasparente/sat
 # class: site class
 # language: en
 # direction: ltr
-# soma: true
 
 # DEFAULTS
 defaults:
   - scope:
       path: ''
-#       type: posts
     values:
       layout: default
-#       pagination: true
-#       aside: true
-#       class: remember-document headings-anchor
+  - scope:
+      path: ''
+      type: posts
+    values:
+      pagination: true
+      aside: true
 
 # COLLECTIONS
-#   docs:
-#     title: Docs
-#     output: true
-#     sort_by: order
 collections:
   posts:
     title: Posts
+  docs:
+    title: Docs
+    output: true
+    sort_by: order

@@ -1,1 +1,21 @@
-<time datetime='{{ include.datetime | default: site.time | date_to_rfc822 }}'{% if include.duration %} duration="{{ include.duration }}"{% endif %}{% if include.style %} data-style="{{ include.style }}"{% endif %}><span></span></time>
+<time datetime='{{ include.datetime | default: site.time | date_to_rfc822 }}'{% if include.duration %} duration="{{ include.duration }}"{% endif %}{% if include.style %} data-style="{{ include.style }}"{% endif %}>{% if include.text %}{{ include.text | markdownify | remove: '<p>' | remove: '</p>' }}&nbsp;{% endif %}<span></span></time>
+{%- capture api -%}
+Render a `<time>`{:.language-html} element containing:
+- `text`
+- `<span>`{: .language-html} element with relative time
+- temporal classes accordingly: `past`, `future`, `today`, `tomorrow`, `yesterday`
+- add readable date as `title` attribute
+
+```liquid
+{% raw %}{% include widgets/datetime.html datetime=site.time %}{% endraw %}
+```
+
+**Includes**
+
+- `datetime`: reference instant, default to `site.time`
+- `text`: text before relative time, optional
+- `duration`: repeating event, ISO-8601 duration (P)eriod string, optional  
+  `/^P(\d+Y)?(\d+M)?(\d+W)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?$/`{:.language-js}
+- `repetition`: number of repetitions of the duration period, optional
+- `style`: can be `narrow` or `short`, default to `long`
+{%- endcapture -%}

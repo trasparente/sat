@@ -14,6 +14,7 @@ p, dl
   margin: .5em 0
 time
   span:last-child
+    cursor: default
     text-decoration: underline dotted var(--dim)
   &.today span:last-child
     text-decoration-color: var(--success)
@@ -21,3 +22,7 @@ time
     text-decoration-color: var(--info)
   &.yesterday span:last-child
     text-decoration-color: var(--action)
+
+.aside, .pagination
+  .icon
+    @extend .fg-dim, .font-size-smaller

@@ -12,10 +12,11 @@
 {% raw %}{% include widgets/api.html include='folder/file' %}{% endraw %}
 ```
 
-**Includes**
+**Options**
 
 - `include`: target include file with format `folder/file`.  
   Extension `.html` can be omitted.
+- `details`: embed text in a `<details>`{:.language-html} element
 
 **Format**
 ```liquid
@@ -30,9 +31,9 @@ Description
 {%- endcapture -%}{% endraw %}
 ```
 {%- endcapture -%}
-{% endif %}{% if api != nil %}
-<details class="api" markdown=1><summary>{{ include_file | split: "/" | last | split: "." | first | capitalize }}</summary>
+{% endif %}{% if api != nil %}{% if include.details %}
+<details class="api" markdown=1><summary>{{ include_file | split: "/" | last | split: "." | first | capitalize }}</summary>{% else %}<h3>{{ include_file | split: "/" | last | split: "." | first | capitalize }}</h3>{% endif %}
 {{ api | mardowify }}
 
 File: {% assign absolute_path = include_file | prepend: '_includes/' %}{% include widgets/links/github_link.html path=absolute_path %}
-</details>{% endif %}
+{% if include.details %}</details>{% endif %}{% endif %}

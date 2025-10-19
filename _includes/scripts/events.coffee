@@ -53,4 +53,9 @@ win.scroll () ->
   if win.scrollTop() > win.height() / 5
     html.addClass 'scrolled'
   else html.removeClass 'scrolled'
+  # Apply sticky class to main nav
+  el = $('header + nav')[0]
+  stickyTop = parseInt window.getComputedStyle(el).top
+  currentTop = el.getBoundingClientRect().top
+  el.classList.toggle "sticky", currentTop == stickyTop
   return

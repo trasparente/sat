@@ -10,12 +10,20 @@
   display: flex
 .column
   flex-direction: column
+.width-fit
+  width: fit-content
+.height-fit
+  height: fit-content
 .no-appearance
   appearance: none
   -webkit-appearance: none
 .wrapper
   max-width: 600px
   margin: 0 auto
+
+.aside, .pagination
+  @extend .flex, .wrapper
+  gap: 1.2em
 
 #nav-admin,
 #status
@@ -33,7 +41,7 @@
   margin: 0
   padding: 0
 .margin-vertical
-  margin: .5em 0
+  margin: 1em 0
 .padding-layout
   padding: var(--padding-layout)
 .padding-layout-small

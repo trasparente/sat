@@ -1,15 +1,15 @@
 fieldset
-  @extend .bg-subtle, .border-radius, .inline-block, .margin-vertical
+  @extend .bg-subtle, .border-radius, .margin-vertical, .width-fit, .height-fit
   padding: 0em .3em .3em .3em
-  height: fit-content
   border-color: transparent
   legend
-    background-color: var(--bg)
     color: var(--dim)
-    // margin-bottom: .2em
     padding: .1em .3em
-    text-transform: uppercase
 header + nav
   fieldset
-    @extend .inline, .bg
+    @extend .inline, .bg, .border-dim
     margin: 0
+    legend
+      @extend .uppercase
+    &:has([aria-current])
+      @extend .border

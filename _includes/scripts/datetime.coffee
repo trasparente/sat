@@ -43,7 +43,9 @@ relative_time = (e) ->
   span.text text
   el.removeClass 'past future today tomorrow yesterday'
   el.addClass classi.join ' '
-  console.log classi, do date_iso, date_iso date
+  el.attr 'title', date.toLocaleDateString(lang, {
+    weekday: "short", day: "numeric", month: "short", year: "numeric"
+  }) + " #{date.toLocaleTimeString(lang)} Δ#{Math.abs delta.toFixed 2}"
   return
 
 format_text = (delta, unit, style) ->

@@ -11,13 +11,11 @@ a, .link
 // Header
 header + nav fieldset a
   padding: 0 .2em
-  @extend .uppercase
-  font-family: system-ui
+  @extend .font-family
   &[aria-current='page']
-    @extend .fg-info
+    @extend .fg
 
 // Footer
 footer nav a
-  color: var(--dim)
+  @extend .width-fit, .fg-dim
   display: block
-  width: fit-content

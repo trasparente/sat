@@ -11,6 +11,23 @@
   <meta property="og:title" content="{{ page.title }} {{ title }}">
   <meta property="og:image" content="{{ page.image }}">
   <meta property="og:description" content="{{ description }}">
+  <meta name='page-title' value='{{ page.title }}'>
+  <meta name='page-url' value='{{ page.url }}'>
+  <meta name='file-name' value='{{ page.id | split: "/" | last }}'>
+  <meta name='file-path' value='{{ page.path }}'>
+  <meta name='extension' value='{{ page.path | split: "." | last }}'>
+  <meta name='page-id' value='{{ page.id }}'>
+  <meta name='page-name' value='{{ page.name }}'>
+  <meta name='page-dir' value='{{ page.dir }}'>
+  <meta name='github-fork' value='{{ fork }}'>
+  <meta name='github-repoid' value='{{ id }}'>
+  <meta name='github-ownerid' value='{{ repo.owner.id }}'>
+  <meta name='github-hash' value='{{ hash }}'>
+  <meta name='github-environment' value='{{ site.github.environment }}'>
+  <meta name='github-remotetheme' value='{{ site.remote_theme }}'>
+  <meta name='color-scheme' value='{{ color_scheme }}'>
+  <meta name='debug' value='{{ page.debug }}'>
+  <meta name='collection' value='{{ collection }}'>
   {% if site.remote_theme %}
   <!-- REMOTE THEME -->
   <meta name='remote_theme' content='{{ site.remote_theme }}'>

@@ -3,5 +3,8 @@ main
   @extend .padding-layout
   > div
     @extend .wrapper
-    > h1:first-child
-      margin-top: 0
+    // Ignore 'aside' and 'pagination' DIVs
+    &#content:first-child >
+      h1, h2, h3
+        &:first-child
+          margin-top: 0

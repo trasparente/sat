@@ -1,11 +1,11 @@
 details
-  @extend .border-subtle, .border-bottom
+  --font-size: var(--font-size-smaller)
+  @extend .border-subtle, .border-bottom, .font-size
   border-style: dashed
   margin-bottom: 1em
-  padding: .5em 0
+  padding: .5em
   summary
-    @extend .link, .padding-small
-    width: fit-content
+    @extend .link, .padding-small, .width-fit
     &::marker
       color: var(--fg)
     &:hover

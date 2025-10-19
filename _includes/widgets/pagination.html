@@ -1,0 +1,27 @@
+{%- assign collection_docs = site[page.collection] -%}
+{%- if collection_docs.size -%}
+  {%- for doc in collection_docs -%}
+    {%- if next -%}
+      {%- assign next_title = doc.title -%}
+      {%- assign next_url = doc.url -%}
+      {%- assign next_date = doc.date -%}
+      {%- assign next = nil -%}
+    {%- endif -%}
+    {%- if doc.url == page.url -%}
+      {%- assign prev_title = last_title -%}
+      {%- assign prev_url = last_url -%}
+      {%- assign prev_date = last_date -%}
+      {%- assign next = true -%}
+    {%- endif -%}
+    {%- assign last_title = doc.title -%}
+    {%- assign last_url = doc.url -%}
+    {%- assign last_date = doc.date -%}
+  {%- endfor -%}
+{%- endif -%}
+{% if next_title or prev_title %}<div class='pagination' aria-label="Pagination">
+  <div>{% if prev_title %}<a class='icon' href='{{ prev_url | absolute_url }}' rel='prev' aria-label="Previous page">{% include svg/icons/arrow-left.svg %}{{ prev_title | truncate: 31 }}</a> {% if prev_date %}{% include widgets/datetime.html datetime=prev_date %}{% endif %}{% endif %}</div>
+  <div>{% if next_title %}{% if next_date %}{% include widgets/datetime.html datetime=next_date %}{% endif %} <a class='icon icon-right' href='{{ next_url | absolute_url }}' rel='next' aria-label="Next page">{{ next_title | truncate: 31 | strip }}{%- include svg/icons/arrow-right.svg -%}</a>{% endif %}</div>
+</div>{% endif %}
+{%- capture api -%}
+`page.pagination: true`{:.language-js} will append a `div.pagination[aria-label='Pagination']`{:.language-css} to `<main>`{:.language-html} with the links to the previous and next collections's document.
+{%- endcapture -%}

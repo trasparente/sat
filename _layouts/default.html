@@ -12,23 +12,6 @@
   onhashchange='onhashchange()'
   onfocus='focus()'
   onblur='blur()'
-  data-page-title='{{ page.title }}'
-  data-page-url='{{ page.url }}'
-  data-page-path='{{ page.path }}'
-  data-page-id='{{ page.id }}'
-  data-page-name='{{ page.name }}'
-  data-page-dir='{{ page.dir }}'
-  data-debug='{{ page.debug }}'
-  data-github-fork='{{ fork }}'
-  data-github-repo-id='{{ id }}'
-  data-github-owner-id='{{ repo.owner.id }}'
-  data-github-hash='{{ hash }}'
-  data-collection='{{ collection }}'
-  data-title='{{ page.id | split: "/" | last }}'
-  data-extension='{{ page.path | split: "." | last }}'
-  data-github-environment='{{ site.github.environment }}'
-  data-github-remote-theme='{{ site.remote_theme }}'
-  data-color-scheme='{{ color_scheme }}'
   class='{{ page.class | append: " " | append: page.default_class | strip }}'>
 {%- include page/header.html -%}
 {%- include page/navigation.html -%}

@@ -1,8 +1,10 @@
 header + nav
-  @extend .padding-layout-small, .bg-subtle
+  @extend .padding-layout-small, .bg
   cursor: default
   z-index: 100
   position: sticky
   top: 0
+  &.sticky
+    @extend .bg-subtle
   & > div
     @extend .wrapper

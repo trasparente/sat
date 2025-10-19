@@ -1,0 +1,15 @@
+<aside class='aside'>
+{% if page.author %}<div class='icon'>{% include svg/icons/unlogged.svg %} {{ page.author }}</div>{% endif %}
+{% if page.date %}<div class='icon'>{% include svg/icons/calendar.svg %} {% include widgets/datetime.html datetime=page.date %}</div>{% endif %}
+{% if page.category %}<div class='icon'>{% include svg/icons/folder.svg %} {{ page.category | join: ', ' }}</div>{% endif %}
+{% if page.tags.size > 0 %}<div class='icon'>{% include svg/icons/tag.svg %} {{ page.tags | join: ', ' }}</div>{% endif %}
+</aside>
+{%- capture api -%}
+`page.aside: true`{:.language-js} will append an `<aside>`{:.language-html} element to `<main>`{:.language-html} with existing `front-matter` variables.
+- `page.author`{:.language-js}
+- `page.date`{:.language-js}
+- `page.category`{:.language-js}
+- `page.categories`{:.language-js}
+- `page.tag`{:.language-js}
+- `page.tags`{:.language-js}
+{%- endcapture -%}
