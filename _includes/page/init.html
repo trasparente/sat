@@ -19,6 +19,7 @@
 {% assign order_by = 'order' %}
 {% assign site_collections = site.collections %}
 {% if site_collections %}{% assign sorted_collections = site_collections | order_by: order_by %}{% endif %}
+{% assign counter = 0 %}
 {%- capture api -%}
 <fieldset markdown=1><legend>Liquid initial values</legend>
 - `site_title` {{ site_title }}
@@ -40,5 +41,6 @@
 - `repo.owner.node_id` {{ repo.owner.node_id }}
 - `html_pages` {{ html_pages.size }}
 - `site_collections` {{ sorted_collections.size }}
+- `counter` {{ counter }}
 </fieldset>
 {%- endcapture -%}

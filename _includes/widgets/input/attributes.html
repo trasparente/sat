@@ -1,0 +1,6 @@
+{%- assign values = include.opt -%}
+{%- assign att = include.attributes | split: ',' -%}
+{%- assign specify = 'value,slug,autocomplete,min,max,step' | split: ',' -%}
+{%- assign identity = 'required,multiple,disabled' | split: ',' -%}
+{%- assign data = 'slug' | split: ',' -%}
+{% for a in values %}{% if specify contains a[0] %} {{ a[0] }}='{% if a[1] == 'today' %}{{ site.time | date: '%F' }}{% else %}{{ a[1] }}{% endif %}'{% endif %}{% if identity contains a[0] %} {{ a[0] }}{% endif %}{% if data contains a[0] %} data-{{ a[0] }}='{{ a[1] }}'{% endif %}{% endfor %}

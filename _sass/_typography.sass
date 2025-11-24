@@ -1,7 +1,11 @@
-.segment7
-  font-family: '7segment'
 .font-family
   font-family: var(--font-family)
+.ff-segment7
+  font-family: '7segment' !important
+.ff-micro
+  font-family: 'MicrogrammaMedium' !important
+.ff-micro-bold
+  font-family: 'MicrogrammaBold' !important
 .font-size
   font-size: var(--font-size)
 .font-size-small
@@ -23,6 +27,18 @@ time
   &.yesterday span:last-child
     text-decoration-color: var(--action)
 
-.aside, .pagination
-  .icon
-    @extend .fg-dim, .font-size-smaller
+.descriptions, .description, [data-input='message']
+  display: block
+  @extend .fg-dim, .font-size-smaller
+
+#status div
+  @extend .ff-micro, .fg-dim
+  font-size: 15px
+  letter-spacing: 2px
+
+.aside .icon,
+.pagination > div time,
+.pagination > div .icon
+  @extend .fg-dim, .font-size-smaller
+.pagination div .icon:hover
+  @extend .fg

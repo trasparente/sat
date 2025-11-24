@@ -3,13 +3,13 @@ fieldset
   padding: 0em .3em .3em .3em
   border-color: transparent
   legend
-    color: var(--dim)
+    @extend .fg-dim, .bg
     padding: .1em .3em
-header + nav
-  fieldset
-    @extend .inline, .bg, .border-dim
-    margin: 0
-    legend
-      @extend .uppercase
-    &:has([aria-current])
-      @extend .border
+
+nav.nav-main fieldset, fieldset.input
+  @extend .inline, .bg, .border-dim
+  margin: 0
+  legend
+    @extend .uppercase, .bg, .border-radius
+  &:has([aria-current])
+    @extend .border

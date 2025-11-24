@@ -1,5 +1,18 @@
 ---
 order: 1
+table:
+  file_url:
+    type: hidden
+    value: practice.csv
+  date:
+    type: date
+    value: today
+  serie:
+    type: radio
+    description: Choose serie
+    options: [U,1,2,3,4]
+    descriptions: [cosa,dico,mai,qui]
+    default: 0
 ---
 # Widgets
 {% include widgets/toc.html %}
@@ -7,6 +20,8 @@ order: 1
 List of widgets
 
 {% include widgets/api.html details=1 %}
+{% include widgets/api.html details=1 include='widgets/input' %}
+{% include widgets/input.html form=page.table %}
 {% include widgets/api.html details=1 include='widgets/datetime' %}
 
 {% assign now = 'now' | date: "%s" %}

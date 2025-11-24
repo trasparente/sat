@@ -1,0 +1,81 @@
+{% assign form = include.form | default: page.form %}
+{% if form == nil %}> Widget `input` missing `form` option.
+{:role="alert"}{% else %}
+{% assign url = form.file_path.value | append: form.file_name.value | append: form.file_extension.value | default: form.file_url.value %}
+{% assign url = form.file_url.value %}
+{% if url == nil %}
+  {% assign url = form.file_name.value | append: "." | append: form.file_extension.value %}
+  {% if form.file_path.value %}
+  {% assign url = url | prepend: "/" | prepend: form.file_path.value %}
+  {% endif %}
+{% endif %}
+{% if url == nil %}> Widget `input` missing file url.
+{:role="alert"}{% else %}
+<!-- FORM -->
+{% assign counter = counter | plus: 1 %}
+{% if include.popover %}<button popovertarget="addrow-popover">Add row</button> <span class='fg-dim'>{{ url }}</span>
+<div id='addrow-popover' popover="auto">
+{% else %}
+<fieldset class='input'><legend>Form</legend>
+{% endif %}
+<form id='input-{{ counter }}' class='{{ 'input prevent reset ' | append: include.class | strip }}' markdown=1>
+{%- for field in form -%}
+{%- assign id = field | first -%}
+{%- assign options = field | last -%}
+{%- assign type = options.type -%}
+{% if type %}
+<div data-input='{{ type }}' data-id='{{ id }}'>{% if type != 'hidden' %}<label for='{{ id }}'>{{ options.label | default: id | capitalize }}</label>{% endif %}{% assign field_url = 'widgets/input/' | append: type | append: '.html' %}{% include {{ field_url }} id=id options=options %}{% if options.description %}<span class='description'>{{ options.description | newline_to_br | markdownify | replace: 'p>','span>' }}</span>{% endif %}</div>
+{% endif %}
+{%- endfor -%}
+  <!-- Buttons -->
+  <div data-input="buttons">
+    <label for='send-button'>SEND</label>
+    <div class='buttons-container'>
+      <input type='submit' title='Save file' name='submit' value='ADD'>
+      <input type='reset' title='Reset form' name='reset' value='RESET'>
+    </div>
+  </div>
+  <div data-input="message" role='status'>_data/<span class='file-url'>{{ url }}</span></div>
+
+<!-- End form -->
+</form>
+{% if include.popover %}</div>{% else %}</fieldset>{% endif %}
+{% endif %}{% endif %}
+{%- capture api -%}
+Render a form to create or edit a data file, or perform automatic functions.  
+Fields and destination are passed with a data file or in the front matter.
+
+- `include.form`{:.language-coffeescript}: front-matter or data file, default to `page.form`{:.language-coffeescript}.
+- `include.class`{:.language-coffeescript}: class added to the form.
+- `include.popover`{:.language-coffeescript}: Show as Popover.
+```liquid
+{% raw %}{% include widgets/input.html form=page.form %}{% endraw %}
+```
+- `include.function`{:.language-coffeescript}: javascript function.
+```liquid
+{% raw %}{% include widgets/input.html function='a/b=c/d' %}{% endraw %}
+```
+
+**yaml object to Forms**
+
+Reserved fields
+
+- `file_url`: complete data file url
+  Alternate url expression
+  - `file_name`
+  - `file_extension`
+  - `file_path`
+
+Fields options and values
+
+- type
+  - All types
+    - label (text)
+    - description (text)
+  - hidden
+  - date
+  - radio
+    - options (array of id)
+    - descriptions (array of text)
+
+{%- endcapture -%}

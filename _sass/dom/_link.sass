@@ -7,13 +7,13 @@ a, .link
     text-decoration: underline
   &:active
     color: var(--dim)
-
-// Header
-header + nav fieldset a
-  padding: 0 .2em
-  @extend .font-family
   &[aria-current='page']
     @extend .fg
+
+// Header
+nav.nav-main fieldset a
+  padding: 0 .2em
+  @extend .font-family
 
 // Footer
 footer nav a

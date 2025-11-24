@@ -1,21 +1,27 @@
+.button
+  @extend .fg-action, .bg-subtle, .font-family, .font-size, .border-dim, .border-radius, .padding-small
+.clickable
+  cursor: pointer
+  &:hover, &:focus
+    @extend .border
+    color: var(--fg)
+  &:active
+    color: var(--dim)
+
 button
   // Reset button appearance
   @extend .no-appearance, .mpz
   background: transparent
   cursor: pointer
   border: none
-
+  outline: none
   // Submit buttons
-  &[type='submit']
-    @extend .fg-action, .bg-subtle, .font-family, .font-size, .border-dim, .border-radius, .padding-small
+  &[type='submit'],
+  &[type='button'],
+  &[popovertarget]
+    @extend .button, .clickable
     margin: .5em 0
     max-width: 15em
-    outline: none
-    &:hover, &:focus
-      @extend .border
-    &:active
-      @extend .fg
-
 // States
 button[type='submit'][disabled],
 form:invalid button[type='submit']

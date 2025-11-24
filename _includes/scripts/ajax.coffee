@@ -18,10 +18,11 @@ doc.on 'ajaxError', (e,r,x) ->
   message = "#{r.responseJSON?.message || 'error'}"
   url = x.url.replace /https\:\/\/|\?_=\d+|api.github.com\//g, ''
   # regex to delete till the end: string.replace(/[?].*/,'')
-  console.log 'ajaxError', r.status, r.statusText, x.url.split('?')[0]
+  log_error r, x
   return
-doc.on 'ajaxSuccess', (e,r,x) ->
+doc.on 'ajaxSuccess', (e,r,x) -> log_error r, x
+
+log_error = (r, x) ->
   console.log r.status, x.url.replace /https\:\/\/|\?_=\d+|api.github.com\//g, ''
-  return
 
 remove_ajax = -> html.removeClass('ajax')

@@ -24,11 +24,20 @@
 .aside, .pagination
   @extend .flex, .wrapper
   gap: 1.2em
+.pagination
+  justify-content: space-between
+
+header > div
+  @extend .wrapper, .flex
+  justify-content: right
+  align-items: center
+  gap: .4em
 
 #nav-admin,
 #status
   @extend .flex
   justify-content: flex-end
+  gap: .4em
 
 #bottom
   z-index: 100
@@ -37,11 +46,29 @@
   bottom: 0
   padding: 1em
 
+form
+  padding: .3em
+  [data-input] + [data-input]:not(:last-of-type)
+    margin-bottom: .5em
+
+label[for]
+  display: block
+  padding: 0 .1em .2em .1em
+
+// RADIO TYPE
+.radio-container
+  @extend .flex
+  gap: .2em
+  + .description
+    padding-top: .1em
+
 .mpz
   margin: 0
   padding: 0
 .margin-vertical
   margin: 1em 0
+.margin-vertical-half
+  margin: .5em 0
 .padding-layout
   padding: var(--padding-layout)
 .padding-layout-small

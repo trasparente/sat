@@ -1,12 +1,31 @@
-textarea, input
+textarea, input, output
   @extend .no-appearance, .bg-subtle, .fg, .font-size, .border-dim, .border-radius, .padding-small
   cursor: default
-  margin: .5em 0
+  // margin: .5em 0
   max-width: 15em
   outline: none
 
 input
-  &:focus
-    @extend .border
-  &:not(:valid)
-    @extend .border-error
+  // Fields
+  &:not([type='reset']):not([type='submit']):not([type='button'])
+    &:focus
+      @extend .border
+    &:not(:valid)
+      @extend .border-error
+  // Buttons
+  &:is([type='reset'], [type='submit'], [type='button'])
+    @extend .clickable
+  // Radio
+  &[type='radio']
+    display: none
+    & + label
+      @extend .button, .clickable,
+      flex-grow: 1
+      text-align: center
+    &:checked + label
+      @extend .border
+      color: var(--fg)
+      .descriptions
+        @extend .fg
+    // &:not(:checked) + label
+    //   @extend .fg-dim

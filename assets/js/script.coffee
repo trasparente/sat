@@ -8,3 +8,4 @@
 {% include scripts/auth.coffee %}
 {% include scripts/bootstrap.coffee %}
 {% include scripts/datetime.coffee %}
+{% include scripts/forms.coffee %}

@@ -1,8 +1,7 @@
 details
-  --font-size: var(--font-size-smaller)
-  @extend .border-subtle, .border-bottom, .font-size
+  @extend .border-subtle, .border-bottom, .font-size-small
   border-style: dashed
-  margin-bottom: 1em
+  // margin-bottom: 1em
   padding: .5em
   summary
     @extend .link, .padding-small, .width-fit
@@ -14,5 +13,3 @@ details
     &:active,
     &:active::marker
       color: var(--dim)
-html.mobile details[open]
-  border-bottom: 1px solid var(--subtle)

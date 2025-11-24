@@ -1,7 +1,7 @@
 <footer>
   <div>
     <nav>
-      <a href='{{ "/site/info/" | absolute_url }}'>Info</a>
+      {% assign url = "/site/info/" %}<a href='{{ url | absolute_url }}'{% if page.url == url %} aria-current='page'{% endif %}>Info</a>
     </nav>
     <nav>
       <a href='#top'>Top</a>

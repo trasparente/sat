@@ -1,0 +1,3 @@
+{% assign opt = include.options %}{% assign desc = opt.descriptions %}<div class='radio-container'>
+{% for option in opt.options %}
+<input type='radio' name='{{ include.id }}' id='{{ option }}' value='{{ option }}'{% if opt.value == nil and forloop.first %} checked{% endif %}{% if opt.value == option %} checked{% endif %}><label for='{{ option }}'><span class='radio-name'>{{ option }}</span>{% if desc[forloop.index0] %}<span class='descriptions'>{{ desc[forloop.index0] | markdownify | replace: 'p>', 'span>' }}</span>{% endif %}</label>{% endfor %}</div>
