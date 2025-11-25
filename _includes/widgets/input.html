@@ -1,4 +1,4 @@
-{% assign form = include.form | default: page.form %}
+{%- assign form = include.form | default: page.form -%}
 {% if form == nil %}> Widget `input` missing `form` option.
 {:role="alert"}{% else %}
 {% assign url = form.file_path.value | append: form.file_name.value | append: form.file_extension.value | default: form.file_url.value %}

@@ -19,8 +19,10 @@ table:
 ## Calendar
 
 {% include widgets/input.html form=page.table popover=1 %}
-<button type='button'>Add column</button>
-<button type='button'>Change order</button>
+To do <button type='button' disabled>Add column</button> <button disabled type='button'>Change order</button>
+
+> - Base64 undefined
+{:.border-error}
 
 ## Table
 

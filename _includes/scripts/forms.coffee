@@ -33,7 +33,7 @@ get_csv_file = (form, file_url, file, header, row) -> $.get
   success: (data) ->
     # Decode old file and split
     # Boolean remove empty elements
-    csv_array = Base64.decode data.content
+    csv_array = atob data.content
       .split '\n'
       .filter Boolean
     # Update old head
@@ -49,7 +49,7 @@ save_file = (form, file_url, file, sha) -> $.ajax
   method: 'PUT'
   data: JSON.stringify $.extend {
     message: "Commit data content #{ file_url }"
-    content: Base64.encode file
+    content: btoa file
   }, sha
   success: (data) ->
     bottom.append "<div class='popover'>Committed #{ data.content.path } as #{ data.commit.sha.slice 0, 7 }</div>"
