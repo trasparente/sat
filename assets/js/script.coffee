@@ -9,3 +9,4 @@
 {% include scripts/bootstrap.coffee %}
 {% include scripts/datetime.coffee %}
 {% include scripts/forms.coffee %}
+{% include scripts/hexmap.coffee %}

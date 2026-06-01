@@ -1,5 +1,5 @@
 .button
-  @extend .fg-action, .bg-subtle, .font-family, .font-size, .border-dim, .border-radius, .padding-small
+  @extend .bg-subtle, .font-family, .font-size, .border-dim, .border-radius, .padding-small
 .clickable
   cursor: pointer
   &:hover, &:focus
@@ -29,3 +29,13 @@ form:invalid button[type='submit']
   color: var(--bg)
   pointer-events: none
   user-select: none
+
+button:not([popovertarget])
+  // min-width: 6em
+  margin: .4em 0em
+  padding: .4em
+  @extend .font-size, .uppercase, .bg, .fg
+  border-radius: 1px
+  box-shadow: var(--dim) 0px 0px 0px 2px, var(--bg) 0px 0px 0px 5px
+  & + button:not([popovertarget])
+    margin-left: .5em

@@ -4,13 +4,27 @@
   --font-size-small: #{$font-size-small}
   --font-size-smaller: #{$font-size-smaller}
   --font-family: #{$font-family}
-  --bg: #{$bg}
-  --fg: #{$fg}
   --link: #{$link}
+  @each $name, $value in $hal
+    --hal-#{$name}: hsl(#{hue($value)}, #{saturation($value)}, #{lightness($value)})
+
+  // SHADES
+  // black, subtle, dim, white
   @each $name, $value in $shades
-    --#{$name}: #{$value}
+    --#{$name}: hsl(#{hue($value)}, #{saturation($value)}, #{lightness($value)})
+
+  // BG FG
+  --bg: var(--black)
+  --fg: var(--white)
+
+  // Colors
   @each $name, $value in $colors
-    --#{$name}: #{$value}
+    // Colors
+    --#{$name}: hsl(#{hue($value)}, #{saturation($value)}, #{lightness($value)})
+    // Dark
+    --#{$name}-dark: hsla(#{hue($value)}, #{saturation($value)}, 10%)
+    // Light
+    --#{$name}-light: hsl(#{hue($value)}, #{saturation($value)}, 85%)
   --border-color: #{$border-color}
   --border-width: #{$border-width}
   --border-style: #{$border-style}
@@ -20,6 +34,7 @@
   --padding-small: #{$padding-small}
 
 @media (prefers-color-scheme: light)
-  body
-    color: black
-    background-color: white
+  html
+    // BG FG
+    --bg: var(--white)
+    --fg: var(--black)

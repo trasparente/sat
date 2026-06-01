@@ -1,0 +1,38 @@
+{% assign row = include.row | default: 0 %}
+{% assign col = include.col | default: 0 %}
+{% assign index = include.index | default: '' %}
+{% assign scale = include.scale | default: 30 %}
+{% assign y = include.ips %}
+{% assign x =include.ics %}
+<!-- Set to 30 deg for Pointy Hex, use a CSS class -->
+{% assign rotate = include.rotate | default: 0 %}
+{% if square_d < max_d %}
+<g class='hex' data-index='{{ index }}' data-column='{{ col }}' data-row='{{ row }}' data-distance='{{ distance }}'>
+  <g class='hexagon'>
+    <polygon vector-effect="non-scaling-stroke" transform='translate({{ x }},{{ y }}) scale({{ scale }}) rotate({{ rotate }})' points="1,0 0.5,0.866 -0.5,0.866 -1,0 -0.5,-0.866 0.5,-0.866"></polygon>
+  </g>
+  <g class='text'>
+    {% comment %} top {% endcomment %}
+    <text x="{{ x }}" y="{{ y }}" dy='-1.5em'>{{ max_d }}</text>
+
+    {% comment %} top half {% endcomment %}
+    <text x="{{ x }}" y="{{ y }}" dy='-0.75em'>{{ distance }}</text>
+
+    {% comment %} Middle {% endcomment %}
+    <text x="{{ x }}" y="{{ y }}" dy='0em'>{{ row }}|{{ col }}</text>
+
+    {% comment %} bottom half {% endcomment %}
+    {% assign abs_x = col | abs %}
+    {% assign abs_y = row | abs %}
+    {% if abs_x > abs_y %}
+      {% assign dd = abs_x %}
+    {% else %}
+      {% assign dd = abs_y %}
+    {% endif %}
+    <text x="{{ x }}" y="{{ y }}" dy='0.8em'>{{ dd | round }}|{{ abs_x | plus: abs_y | round }}</text>
+
+    {% comment %} bottom {% endcomment %}
+    <text x="{{ x }}" y="{{ y }}" dy='1.6em'>{{ square_d }}</text>
+  </g>
+</g>
+{% endif %}

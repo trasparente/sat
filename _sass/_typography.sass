@@ -1,13 +1,26 @@
 .font-family
   font-family: var(--font-family)
+
+// Refer to _sass/fonts.sass
 .ff-segment7
   font-family: '7segment' !important
 .ff-micro
   font-family: 'MicrogrammaMedium' !important
 .ff-micro-bold
   font-family: 'MicrogrammaBold' !important
+.ff-lekton
+  font-family: 'Lekton' !important
+  // padding-block: 7px 2px !important
+.ff-lekton-bold
+  font-family: 'LektonBold' !important
+.ff-lekton-italic
+  font-family: 'LektonItalic' !important
+
+// Font Sizes
 .font-size
   font-size: var(--font-size)
+.font-size-2
+  font-size: 2em
 .font-size-small
   font-size: var(--font-size-small)
 .font-size-smaller
@@ -35,6 +48,7 @@ time
   @extend .ff-micro, .fg-dim
   font-size: 15px
   letter-spacing: 2px
+  min-width: 3em
 
 .aside .icon,
 .pagination > div time,

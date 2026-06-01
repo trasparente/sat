@@ -1,28 +1,46 @@
 // Backgrounds
 .bg
   background-color: var(--bg)
+  fill: var(--bg)
 @each $name, $value in $shades
   .bg-#{$name}
-    background-color: var(--#{$name})
+    background-color: var(--#{$name}) !important
+    fill: var(--#{$name})
 .active
   background-color: var(--fg)
   border-color: var(--fg)
   color: var(--bg)
 @each $name, $value in $colors
   .bg-#{$name}
-    background-color: var(--#{$name})
-    @if $name == info or $name == action
-      color: var(--bg)
+    background-color: var(--#{$name}) !important
+    fill: var(--#{$name})
+  .fg-#{$name}
+    color: var(--#{$name}) !important
+    fill: var(--#{$name})
+  .fg-#{$name}-light
+    color: var(--#{$name}-light) !important
+    fill: var(--#{$name}-light)
+  .bg-#{$name}-dark
+    background-color: var(--#{$name}-dark) !important
+    fill: var(--#{$name}-dark)
+  .bg-#{$name}-light
+    background-color: var(--#{$name}-light) !important
+    fill: var(--#{$name}-light)
+    // @if $name == info or $name == action
+    //   color: var(--bg)
 
 // Foregrounds
 .fg
   color: var(--fg)
+  fill: var(--fg)
 @each $name, $value in $shades
   .fg-#{$name}
-    color: var(--#{$name})
+    color: var(--#{$name}) !important
+    fill: var(--#{$name})
 @each $name, $value in $colors
   .fg-#{$name}
     color: var(--#{$name})
+    fill: var(--#{$name})
 
 // Borders
 .border

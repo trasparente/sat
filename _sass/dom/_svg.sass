@@ -32,3 +32,28 @@
     fill: var(--fg)
   &:active svg
     fill: var(--dim)
+
+// Calendar Widget
+svg.calendar
+  @extend .bg
+  max-width: 100%
+  height: auto
+  .day
+    stroke: transparent
+    &.past, &.today
+      @extend .bg-subtle
+    & + text
+      fill: var(--dim)
+      text-anchor: middle
+      dominant-baseline: middle
+      cursor: default
+    &.today + text
+      fill: var(--fg)
+    &.past
+      stroke: var(--subtle)
+  .day-hover
+    fill: transparent
+    &:hover
+      stroke: var(--fg)
+      // &[data-weekday='7']
+      //   fill: var(--bg)

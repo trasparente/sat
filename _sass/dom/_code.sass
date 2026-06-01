@@ -1,13 +1,15 @@
 tt, code, kbd, samp
+  font-family: monospace
   @extend .bg-subtle
   // font-size: 98%
+  display: inline-block
   vertical-align: bottom
   color: antiquewhite
 
 // INLINE
 code.highlighter-rouge
   @extend .border-radius, .font-size-small
-  padding: .1em .2em
+  // padding: .1em .1em
 
 // BLOCKS
 // Fenced, kramdown, indented:
@@ -19,9 +21,11 @@ div.highlighter-rouge
   margin-block: 1em
 [class*='highlight']
   @extend .border-radius
+  // code
+  //   font-family: 'Lekton', monospace
   pre
     @extend .border-radius, .font-size-smaller
     white-space: pre-wrap
-    padding: .4em .6em
+    padding: .4em .5em
     // Reset browser margin
     margin: 0

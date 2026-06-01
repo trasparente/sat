@@ -10,6 +10,9 @@
   display: flex
 .column
   flex-direction: column
+.space-between
+  @extend .flex
+  justify-content: space-between
 .width-fit
   width: fit-content
 .height-fit
@@ -25,7 +28,7 @@
   @extend .flex, .wrapper
   gap: 1.2em
 .pagination
-  justify-content: space-between
+  @extend .space-between
 
 header > div
   @extend .wrapper, .flex
@@ -83,3 +86,10 @@ label[for]
   margin: .2em 0
   &:not(.border)
     border-color: transparent
+
+// DEMO HAL
+.hal
+  margin-bottom: 3em
+  padding: .3em
+  .cal, .btn
+    @extend .padding-small

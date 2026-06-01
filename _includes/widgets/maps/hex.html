@@ -1,0 +1,30 @@
+{% assign r = include.row | default: 0 %}
+{% assign c = include.col | default: 0 %}
+{% assign center_r = include.center_r | default: 0 %}
+{% assign center_c = include.center_c | default: 0 %}
+{% assign row = r | plus: center_r %}
+{% assign col = c | plus: center_c %}
+{% assign y = include.y | times: scale %}
+{% assign x =include.x | times: scale %}
+{% assign index = include.index | default: 0 %}
+{% assign distance = include.distance | default: 0 %}
+{% assign scale = include.scale | default: 30 %}
+{% assign rotate = include.rotate | default: 0 %}
+<g class='hex' data-row='{{ row }}' data-column='{{ col }}' data-distance='{{ distance }}' data-index='{{ index }}' data-relative-row='{{ r }}' data-relative-column='{{ c }}'>
+  <g class='hexagon'>
+    <polygon vector-effect="non-scaling-stroke" transform='translate({{ x }},{{ y }}) scale({{ scale }}) rotate({{ rotate }})' points="1,0 0.5,0.866 -0.5,0.866 -1,0 -0.5,-0.866 0.5,-0.866"></polygon>
+  </g>
+  <g class='text'>
+
+    {% comment %} top 
+    <text x="{{ x }}" y="{{ y }}" dy='-2em'>-</text>{% endcomment %}
+    {% comment %} top half {% endcomment %}
+    <text x="{{ x }}" y="{{ y }}" dy='-2em'>({{ distance }})</text>
+    {% comment %} Middle {% endcomment %}
+    <text x="{{ x }}" y="{{ y }}" dy='0em'>{{ index }}</text>
+    {% comment %} bottom half {% endcomment %}
+    <text x="{{ x }}" y="{{ y }}" dy='1em'>{{ row }},{{ col }}</text>
+    {% comment %} bottom {% endcomment %}
+    <text x="{{ x }}" y="{{ y }}" dy='2em'>{{ r }},{{ c }}</text>
+  </g>
+</g>

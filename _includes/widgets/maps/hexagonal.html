@@ -1,0 +1,100 @@
+{% assign center_r = include.center_r | default: 0 %}
+{% assign center_c = include.center_c | default: 0 %}
+{% assign scale = include.scale | default: 30 %}
+{% assign span = include.span | default: 0 %}
+{% assign hexnum = span | times: 2 | plus: 1 %}
+{% assign hexmap_width = hexnum | plus: 0 | times: 0.85 | times: scale %}
+{% assign hexmap_height = hexnum | plus: 0 | times: 0.94 | times: scale %}
+<!--  FILL ARRAYS  -->
+{% assign rows = '' | split: '' | push: 0 %}
+{% assign cols = '' | split: '' | push: 0 %}
+{% if span > 0 %}
+  {% for radius in (1..span) %}
+    {% assign minus_radius = radius | times: -1 %}
+    {% for c in (0..radius) %}
+      {% assign rows = rows | push: minus_radius %}
+      {% assign cols = cols | push: c %}
+    {% endfor %}
+    {% for i in (1..radius) %}
+      {% assign r = minus_radius | plus: i %}
+      {% assign rows = rows | push: r %}
+      {% assign cols = cols | push: radius %}
+    {% endfor %}
+    {% for i in (1..radius) %}
+      {% assign r = i %}
+      {% assign c = radius | minus: i %}
+      {% assign rows = rows | push: r %}
+      {% assign cols = cols | push: c %}
+    {% endfor %}
+    {% for i in (1..radius) %}
+      {% assign c = i | times: -1 %}
+      {% assign rows = rows | push: radius %}
+      {% assign cols = cols | push: c %}
+    {% endfor %}
+    {% for i in (1..radius) %}
+      {% assign r = radius | minus: i %}
+      {% assign rows = rows | push: r %}
+      {% assign cols = cols | push: minus_radius %}
+    {% endfor %}
+    {% assign radius_less = radius | minus: 1 %}
+    {% for i in (1..radius_less) %}
+      {% assign r = i | times: -1 %}
+      {% assign c = minus_radius | plus: i %}
+      {% assign rows = rows | push: r %}
+      {% assign cols = cols | push: c %}
+    {% endfor %}
+  {% endfor %}
+{% endif %}
+<!-- Start Main Loop -->
+Span=`{{ span }}`
+Hexes=`{{ cols | size }}`
+Center_r=`{{ center_r }}`
+Center_c=`{{ center_c }}`
+<svg class='map hexmap border-radius' viewbox="-{{ hexmap_width }} -{{ hexmap_height }} {{ hexmap_width | times: 2 }} {{ hexmap_height | times: 2 }}" style='border:1px solid var(--{{ h }})' data-span='{{ span }}'>
+<g class='hex-container'>
+{% assign ms = cols | size | minus: 1 %}
+{% for j in (0..ms) %}
+  {% assign i = ms | minus: j %}
+  {% assign r = rows[i] %}
+  {% assign c = cols[i] %}
+  {% assign x = c | times: 1.5 %}
+  {% assign y1 = r | times: 1.732 %}
+  {% assign y2 = c | times: 0.866 %}
+  {% assign y = y1 | plus: y2 %}
+
+  {% assign abs_s = c | times: -1 | minus: r | abs %}
+  {% assign abs_r = r | abs %}
+  {% assign abs_c = c | abs %}
+  {% if abs_s >= abs_r and abs_s >= abs_c %}
+    {% assign distance = abs_s %}
+  {% endif %}
+  {% if abs_r >= abs_s and abs_r >= abs_c %}
+    {% assign distance = abs_r %}
+  {% endif %}
+  {% if abs_c >= abs_s and abs_c >= abs_r %}
+    {% assign distance = abs_c %}
+  {% endif %}
+  {%- include widgets/maps/hex.html row=r col=c x=x y=y scale=scale index=i center_r=center_r center_c=center_c distance=distance -%}
+{% endfor %}
+</g>
+<g class='map-overlay'>
+{% for i in (0..ms) %}
+  {% assign r = rows[i] %}
+  {% assign c = cols[i] %}
+  {% assign x = c | times: 1.5 %}
+  {% assign y1 = r | times: 1.732 %}
+  {% assign y2 = c | times: 0.866 %}
+  {% assign y = y1 | plus: y2 %}
+  <text x="{{ x | times: scale }}" y="{{ y | times: scale }}" dx='.5em' dy='-.5em'>{{ i }}</text>
+{% endfor %}
+</g>
+</svg>
+<br>
+{%- capture api -%}
+Render an hexmap in SVG.
+
+- `include.center_r`{:.language-coffeescript}: Row of map view center, default to 0.
+- `include.center_c`{:.language-coffeescript}: Column of map view center, default to 0.
+- `include.span`{:.language-coffeescript}: Radius of the map view.
+- `include.scale`{:.language-coffeescript}: Scale of the map view, default to 30 (1 hex).
+{%- endcapture -%}

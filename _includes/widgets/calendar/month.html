@@ -1,0 +1,72 @@
+{% assign now = site.time | date: "%s" %}
+{% assign dayms = 86400 %}
+{% assign monthms = dayms | times: 30 %}
+{% if include.postmonth %}
+  {% assign gap = include.postmonth | plus: 1 | times: monthms %}
+{% else %}
+  {% assign gap = monthms %}
+{% endif %}
+{% assign limitday = now | plus: gap %}
+{% assign lm = limitday | date: "%m" %}
+{% assign ly = limitday | date: "%Y" %}
+{% assign last = ly | append: "-" | append: lm | append: "-01" | date: "%s" | minus: dayms %}
+{% if include.premonth %}
+  {% assign gap = include.premonth | times: monthms %}
+{% else %}
+  {% assign gap = 0 %}
+{% endif %}
+{% assign limitday = now | minus: gap %}
+{% assign lm = limitday | date: "%m" %}
+{% assign ly = limitday | date: "%Y" %}
+{% assign prev = ly | append: "-" | append: lm | append: "-01" | date: "%s" %}
+{% assign loopdays = last | minus: prev | divided_by: dayms %}
+{% assign boxside = 17 %}
+{% assign boxborder = 1 %}
+{% assign boxgap = 1 %}
+{% assign fontsize = 10 %}
+{% assign bordertotal = boxborder | times: 2 %}
+{% assign boxtotal = boxside | plus: bordertotal | plus: boxgap %}
+{% assign halfboxside = boxside | plus: boxborder | divided_by: 2 %}
+{% assign monthgap = boxtotal | divided_by: 2 %}
+{% assign monthwidth = boxtotal | times: 7 | plus: monthgap %}
+{% assign calwidth = include.premonth | plus: include.postmonth | plus: 1 | times: monthwidth %}
+{% assign calheight = boxtotal | times: 5 %}
+{% assign zoom = include.zoom | default: 1.2 %}
+{% assign xmonth = 0 %}
+{% assign nowmonth = prev | date: "%m" %}
+<svg width="{{ calwidth | times: zoom }}" height="{{ calheight | times: zoom }}" viewBox="0 0 {{ calwidth }} {{ calheight }}" class='calendar month'>
+{% assign data = prev %}
+{% for day in (0..loopdays) %}
+{% assign weekday = data | date: "%w" | plus: 0 %}
+{% if weekday == 0 %}{% assign weekday = 7 %}{% endif %}
+{% assign x = weekday | minus: 1 | times: boxtotal | plus: boxborder %}
+{% assign month = data | date: '%m' %}
+{% if month != nowmonth %}{% assign nowmonth = month %}{% assign xmonth = xmonth | plus: monthwidth %}
+{% endif %}
+{% assign year = data | date: '%Y' %}
+{% assign offset = "01-" | append: month | append: "-" | append: year | date: "%d-%m-%Y" | date: "%w" | plus: 0 %}
+{% if offset == 0 %}{% assign offset = 7 %}{% endif %}
+{% assign newday = data | date: "%-d" | plus: offset | minus: 1 | divided_by: 7.0 %}
+{% if newday <= 1 %}{% assign y = 0 %}
+{% elsif newday <= 2 %}{% assign y = boxtotal %}
+{% elsif newday <= 3 %}{% assign y = boxtotal | times: 2 %}
+{% elsif newday <= 4 %}{% assign y = boxtotal | times: 3 %}
+{% elsif newday <= 5 %}{% assign y = boxtotal | times: 4 %}
+{% endif %}
+{% assign y = y | plus: boxborder %}
+<rect width="{{ boxside }}" height="{{ boxside }}" x="{{ x | plus: xmonth }}" y="{{ y }}" rx="0" ry="0" class="day" stroke-width='{{ boxborder }}' datetime='{{ data | date: "%F" }}' data-weekday='{{ weekday }}'></rect>
+<text x="{{ x | plus: xmonth | plus: halfboxside | minus: 1 }}" y="{{ y | plus: halfboxside | plus: 0.5 }}" style='font: normal {{ fontsize }}px sans-serif;'>{{ data | date: "%-d" }}</text>
+<rect width="{{ boxside }}" height="{{ boxside }}" x="{{ x | plus: xmonth }}" y="{{ y }}" rx="0" ry="0" class="day-hover"><title>{{ data | date: "%a %-d %b %Y" }}</title></rect>
+{% assign data = data | plus: dayms %}
+{% endfor %}
+
+</svg>
+
+{%- capture api -%}
+Render a svg calendar by week rows.
+
+Options
+- `pre` months pre today to start
+- `post` months post today to show
+- `zoom` multiplication factor for box (side 17px, stroke 1px) and 3px apart (default = 2)
+{%- endcapture -%}

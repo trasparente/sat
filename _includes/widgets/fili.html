@@ -1,0 +1,6 @@
+<div class='btn' style='text-align: center;'>
+{% for hh in hal reversed %}
+<button class='ff-lekton' style='box-shadow: var(--{{ hh }}) 0px 0px 0px 2px, var(--{{ hh }}-dark) 0px 0px 0px 5px;color:var(--{{ hh }}-light)'>&nbsp;{{ hh }}&nbsp;</button>{% if hh=='yel' %}
+<button class='ff-lekton' style='box-shadow: var(--white) 0px 0px 0px 2px, var(--subtle) 0px 0px 0px 5px;'>&nbsp;wht&nbsp;</button><br>{% endif %}
+{% endfor %}
+</div>

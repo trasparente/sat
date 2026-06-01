@@ -29,12 +29,7 @@ relative_time = (e) ->
       # Check if needs updates
       if unit in ['minutes', 'seconds']
         setTimeout relative_time, seconds[unit] * 30 * 1000, e
-      classi = []
-      classi.push(if secondsElapsed < 0 then 'past' else 'future')
-      if date_iso(date) is date_iso() then classi.push 'today'
-      tomorrow = new Date()
-      if date_iso(date) is date_iso tomorrow.setTime(tomorrow.getTime()+seconds.days*1000) then classi.push 'tomorrow'
-      if date_iso(date) is date_iso new Date().setTime(new Date().getTime()-seconds.days*1000) then classi.push 'yesterday'
+      classi = time_class date
       text = format_text delta, unit, style
     else break
   unless el.find('span').length
@@ -47,6 +42,16 @@ relative_time = (e) ->
     weekday: "short", day: "numeric", month: "short", year: "numeric"
   }) + " #{date.toLocaleTimeString(lang)} Δ#{Math.abs delta.toFixed 2}"
   return
+
+time_class = (date) ->
+  secondsElapsed = (date.getTime() - Date.now()) / 1000
+  classi = []
+  classi.push(if secondsElapsed < 0 then 'past' else 'future')
+  if date_iso(date) is date_iso() then classi = ['today']
+  tomorrow = new Date()
+  if date_iso(date) is date_iso tomorrow.setTime(tomorrow.getTime()+seconds.days*1000) then classi.push 'tomorrow'
+  if date_iso(date) is date_iso new Date().setTime(new Date().getTime()-seconds.days*1000) then classi.push 'yesterday'
+  return classi
 
 format_text = (delta, unit, style) ->
   # Language-sensitive relative time formatting
@@ -71,5 +76,12 @@ format_text = (delta, unit, style) ->
     if e and d_array[i] then amount += e * +d_array[i].slice 0, -1
   return amount
 
-# Bootstrap
+# Bootstrap <time>
 $('time[datetime]').each -> relative_time @
+# Bootstrap <svg><rect>
+$('svg rect[datetime]').each ->
+  el = $ @
+  datetime = el.attr 'datetime' || new Date()
+  date = if datetime instanceof Date then datetime else new Date datetime
+  el.addClass time_class(date).join ' '
+  return

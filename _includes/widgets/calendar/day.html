@@ -1,0 +1,34 @@
+{% assign now = site.time | date: "%s" %}
+{% assign dayms = 86400 %}
+{% assign pre = include.pre | default: 1 %}
+{% assign prenegative = pre | times: -1 %}
+{% assign post = include.post | default: 1 %}
+{% assign boxside = 17 %}
+{% assign boxborder = 1 %}
+{% assign boxgap = 1 %}
+{% assign fontsize = 10 %}
+{% assign bordertotal = boxborder | times: 2 %}
+{% assign boxtotal = boxside | plus: bordertotal | plus: boxgap %}
+{% assign halfboxside = boxside | plus: boxborder | divided_by: 2 %}
+{% assign width = pre | plus: post | plus: 1 | times: boxtotal %}
+{% assign zoom = include.zoom | default: 2 %}
+{% assign x = boxborder %}
+<svg width="{{ width | times: zoom }}" height="{{ boxtotal | times: zoom }}" viewBox="0 0 {{ width }} {{ boxside }}" class='calendar day'>
+{% for day in (prenegative..post) %}
+{% assign msgap = day | times: dayms %}
+{% assign data = site.time | date: "%s" | plus: msgap | date: "%F" %}
+{% assign weekday = data | date: "%w" | plus: 0 %}
+{% if weekday == 0 %}{% assign weekday = 7 %}{% endif %}
+<rect width="{{ boxside }}" height="{{ boxside }}" x="{{ x }}" y="0" rx="0" ry="0" class="day" stroke-width='{{ boxborder }}' datetime='{{ data }}' data-weekday='{{ weekday }}'><title>{{ data }}</title></rect>
+<text x="{{ x | plus: halfboxside }}" y="{{ halfboxside }}" style='font: normal {{ fontsize }}px sans-serif;'><title>{{ data | date: "%a %-d %b %Y" }}</title>{{ data | date: "%-d" }}</text>
+{% assign x = x | plus: boxtotal %}
+{% endfor %}
+</svg>
+{%- capture api -%}
+Render a svg calendar for days
+
+Options
+- `pre` days pre today to start
+- `post` days post today to show
+- `zoom` moltiplication factor for box (side 17px, stroke 1px, 3px apart), (default = 2)
+{%- endcapture -%}

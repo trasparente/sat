@@ -20,9 +20,15 @@ table:
 
 {% include widgets/input.html form=page.table popover=1 %}
 To do <button type='button' disabled>Add column</button> <button disabled type='button'>Change order</button>
-
-> - Base64 undefined
-{:.border-error}
+```liquid
+{% raw %}{%- include widgets/calendar/day.html pre=7 post=1 -%}{% endraw %}
+```
+{%- include widgets/calendar/day.html pre=7 post=1 -%}
+```liquid
+{% raw %}{%- include widgets/calendar/month.html post=0 -%}{% endraw %}
+```
+{%- include widgets/calendar/month-old.html pre=2 post=0 zoom=1.2 -%}
+{%- include widgets/calendar/month.html premonth=1 zoom=2-%}
 
 ## Table
 

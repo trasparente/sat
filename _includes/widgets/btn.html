@@ -1,0 +1,17 @@
+<div class='btn'>
+
+  <button class='fg-dim' style='box-shadow: var(--subtle) 0px 0px 0px 2px, var(--bg) 0px 0px 0px 5px;color:var(--bg)'>{{ "res,lam,gam" | split: "," | sample: 1 }}</button>
+
+  <button class='fg-{{ h }}' style='box-shadow: var(--{{ h }}) 0px 0px 0px 2px, var(--bg) 0px 0px 0px 5px'>{{ "1,4,6,8,s,f,w,j" | split: ',' | sample: 2 }}</button>
+
+  <button>{{ "Submit,Reset" | split: "," | sample: 1 }}</button>
+
+  <button style='box-shadow: var(--{{ h }}-light) 0px 0px 0px 2px, var(--bg) 0px 0px 0px 5px;color:var(--{{ h }}-light)'>{{ "sys on,com off" | split: "," | sample: 1 }}</button>
+
+  <button class='bg-{{ h }}-dark' style='box-shadow: var(--bg) 0px 0px 0px 3px, var(--{{ h }}) 0px 0px 0px 5px;color:var(--{{ h }}-light)'>{{ "prog,mine,bioh" | split: "," | sample: 1 }}</button>
+
+  <button class='bg-{{ h }}' style='box-shadow: var(--bg) 0px 0px 0px 3px, var(--{{ h }}) 0px 0px 0px 5px;'>{{ "rec,off,mix,top,min" | split: ',' | sample: 1 }}</button>
+
+  <button class='bg-{{ h }}-light fg-black' style='box-shadow: var(--bg) 0px 0px 0px 2px, var(--bg) 0px 0px 0px 5px'>{{ "Hf,rW,kE" | split: ',' | sample: 1 }}</button>
+
+</div>

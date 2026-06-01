@@ -3,11 +3,18 @@ $bg: hsl(0, 0%,  4%) !default
 $fg: hsl(0, 0%, 90%) !default
 $subtle: hsl(0, 0%,  7%) !default
 $dim: dimgray !default
-$shades: (dim: dimgray, subtle: hsl(0, 0%, 8%)) !default
+$shades: ('black': hsl(0, 0%,  4%), subtle: hsl(0, 0%, 8%), dim: hsl(0, 0%, 45%), 'white': hsl(0, 0%, 90%)) !default
 
 // Colors
-$colors: (action: dodgerblue, success: green, info: goldenrod, error: firebrick) !default
+//$colors: (action: dodgerblue, success: green, info: goldenrod, error: firebrick) !default
+$colors: ('blu': hsl(210, 58%, 30%), 'red': hsl(340, 60%, 30%), 'ora': hsl(20, 60%, 30%), 'sky': hsl(226, 57%, 37%), 'cya': hsl(190, 57%, 37%), 'for': hsl(173, 60%, 20%), 'pin': hsl(315, 34%, 34%), 'vio': hsl(260, 36%, 34%), 'gre': hsl(129, 25%, 35%), 'yel': hsl(45, 65%, 30%), 'gry': hsl(0, 0%, 30%)) !default
+
+// Transparency for dark shades of colors
+$transparency: 0.2
+
 $link: dodgerblue !default
+// HAL 9000 Colors
+$hal: (mem: #18395A, dmg: #9D0032, lif: hsl(20, 65%, 30%), flx: #294295, hib: #074A42, com: #733964, cnt: #436F4A, gde: #7e651b, gry: hsl(0, 0%, 30%))
 
 // Fonts
 $font-family: Arial, system-ui !default
@@ -19,12 +26,13 @@ $font-size-smaller: 90% !default
 $border-color: $dim
 $border-width: 2px
 $border-style: solid
-$border-radius: 3px !default
+$border-radius: 1px !default
 
 // Spaces
 $padding-layout: 1em !default
 $padding-layout-small: .4em .6em !default
 $padding-small: .2em .4em !default
+$padding-minimal: 0em .3em !default
 $mobile-width: 650px !default
 
 // Effects

@@ -1,0 +1,56 @@
+{% assign center_r = include.center_r | default: 0 %}
+{% assign center_c = include.center_c | default: 0 %}
+{% assign scale = include.scale | default: 30 %}
+{% assign span = include.span | default: 0 %}
+{% assign minus_span = span | times: -1 %}
+{% comment %}
+  Max Radius Extension
+{% endcomment %}
+{% assign lambda = 0.866 | divided_by: span %}
+{% assign y_gap = span | times: 1.732 | plus: 0.433 | times: scale %}
+{% assign max_d = y_gap | times: y_gap | floor %}
+{% comment %}
+  Flat Hex case
+{% endcomment %}
+{% assign hexmap_width = span | times: 1.6 | plus: 1 | times: scale %}
+{% assign hexmap_height = span | times: 1.732 | plus: 1 | times: scale %}
+<svg viewbox="-{{ hexmap_width }} -{{ hexmap_height }} {{ hexmap_width | times: 2 }} {{ hexmap_height | times: 2 }}" style='border:1px solid var(--{{ h }})' class='map border-radius'>
+  {% assign index = 0 %}
+  {% for r in (minus_span..span) %}
+    {% for c in (minus_span..span) %}
+<!-- Bootstrap -->
+{% assign odd = c | modulo: 2 %}
+{% assign offset = -0.866 | times: odd %}
+{% assign y = 1.732 | times: r | plus: offset | times: scale %}
+{% assign x = 1.5 | times: c | times: scale %}
+{% assign square_x = x | times: x %}
+{% assign square_y = y | times: y %}
+{% assign square_d = square_y | plus: square_x | floor %}
+      {% if square_d < max_d %}
+      {% for radius in (0..span) %}
+        {% assign front = radius | times: 1.732 | plus: lambda | times: scale %}
+        {% assign square_front = front | times: front %}
+        {% if square_front > square_d %}
+          {% assign distance = radius %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+        {%- include widgets/maps/hex.html row=r col=c ics=x ips=y scale=scale index=index -%}
+        {% assign index = index | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  {% for circ in (0..span) %}
+    {% unless circ == 0 %}
+      <circle cx="0" cy="0" r="{{ circ | times: 1.732 | plus: 0.433 | times: scale }}" fill='none' stroke='rgba(255,255,255,.4)'/>
+    {% endunless %}
+  {% endfor %}
+</svg>
+{%- capture api -%}
+Render an hexmap in SVG.
+
+- `include.center_r`{:.language-coffeescript}: Row of map view center, default to 0.
+- `include.center_c`{:.language-coffeescript}: Column of map view center, default to 0.
+- `include.span`{:.language-coffeescript}: Radius of the map view.
+- `include.scale`{:.language-coffeescript}: Scale of the map view, default to 30 (1 hex).
+{%- endcapture -%}
